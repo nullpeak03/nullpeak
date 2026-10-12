@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ——— Null Peak design tokens ——— */
+:root {
+  --bg: #060a12;
+  --surface: #0a101c;
+  --surface-2: #0e1626;
+  --line: rgba(255, 255, 255, 0.09);
+  --ink: #f2f5f7;
+  --muted: #9aa7b8;
+  --accent: #7dd3fc;
+  --accent-strong: #4ea8ff;
+  --focus: #7dd3fc;
+}
+
+.light {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f5;
+  --line: rgba(6, 10, 18, 0.1);
+  --ink: #0a101c;
+  --muted: #4b5a70;
+  --accent: #1f6fd0;
+  --accent-strong: #185bb0;
+  --focus: #185bb0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible keyboard focus (WCAG AA) */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(125, 211, 252, 0.35);
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em];
+    color: var(--accent);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+  .btn-base {
+    @apply inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-[15px] font-semibold transition-transform duration-150 active:scale-[0.98];
+  }
+}
+
+/* Thin editorial rule with peak tick */
+.rule-peak {
+  border-top: 1px solid var(--line);
+}
+
+/* Respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
